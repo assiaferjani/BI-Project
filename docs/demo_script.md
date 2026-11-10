@@ -43,6 +43,9 @@ demande d'Assia. Ines doit les relire, les utiliser et comprendre leurs calculs
 avant de les présenter. Les commits gardent l'identité Git de leur auteur.
 
 Avant la présentation : revoir visuellement l'interface sur les deux postes,
-ouvrir le CSV dans un tableur, préparer quelques captures de l'application et
-reproduire l'installation depuis une copie neuve. Ne pas annoncer ces actions
+ouvrir le CSV dans un tableur et préparer quelques captures de l'application.
+Une copie neuve avec un environnement neuf a déjà été vérifiée automatiquement
+sur ce poste : installation des dépendances, préparation des trois articles
+fictifs, 95 tests réussis et trois graphiques produits sans exception.
+Reproduire également le lancement sur le poste d'Ines. Ne pas annoncer ces actions
 comme effectuées tant qu'elles ne l'ont pas été.

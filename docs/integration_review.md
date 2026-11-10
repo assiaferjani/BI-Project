@@ -1,5 +1,10 @@
 # Vérification du travail publié par Ines
 
+> Relevé historique : les états des PR et les validations ci-dessous décrivent
+> l'essai initial. Les PR #12 et #15 ont depuis été fusionnées dans
+> `feat/arxiv-data-foundation`, et le vrai snapshot a été traité et contrôlé.
+> Le bilan actuel des données réelles se trouve dans [data_findings.md](data_findings.md).
+
 Vérification du 10 novembre 2026 sur les branches GitHub disponibles à cette date.
 Ce relevé porte sur du code publié, pas sur d'éventuels changements locaux d'Ines.
 

@@ -7,8 +7,10 @@ Projet BI d'Assia Ferjani (personne A) et Ines Makhlouf (personne B).
 correspondant à un sujet ? Ce périmètre reste à valider ensemble.
 
 Le dataset choisi est [arXiv sur Kaggle](https://www.kaggle.com/datasets/Cornell-University/arxiv).
-Cette première contribution prépare les données et leur contrat d'utilisation.
-L'application interactive et les indicateurs seront développés dans les PR suivantes.
+Le projet contient la préparation, les indicateurs et une première interface.
+Le snapshot réel a été traité : **229 620 articles** retenus sur 2020–2024.
+Consulter le [bilan vérifié](docs/data_findings.md) pour la provenance, les chiffres
+et les limites. Les graphiques et l'intégration des PR restantes sont à finaliser.
 
 ## Répartition
 
@@ -72,7 +74,17 @@ Le programme lit le fichier entier progressivement et produit un Parquet et un
 rapport JSON : empreinte SHA-256 de la source, paramètres, versions logicielles,
 date d'exécution et compteurs de qualité. La mémoire contient un bloc d'articles
 et les identifiants déjà retenus ; elle ne contient pas le snapshot complet.
-Le traitement du snapshot réel n'a pas encore été validé dans cette première PR.
+Le premier traitement réel et son empreinte source sont documentés dans
+[docs/data_findings.md](docs/data_findings.md). Le numéro de version Kaggle de
+ce téléchargement n'a pas été renseigné ; il ne peut pas être déduit du nom du ZIP.
+
+Pour vérifier le Parquet et recalculer le bilan :
+
+```bash
+python -m src.profile_data \
+  --input data/processed/articles.parquet \
+  --output reports/arxiv_profile.json
+```
 
 ## Contrat pour l'interface d'Ines
 
@@ -95,6 +107,9 @@ deux catégories compte une fois au total, mais dans chacune des deux catégorie
 
 ```text
 src/prepare_data.py       préparation JSONL → Parquet + rapport qualité
+src/profile_data.py       contrôle du contrat et bilan du Parquet
+src/metrics.py            calculs des indicateurs BI
+reports/                 petits bilans vérifiés, sans les articles
 data/sample/             données fictives de démonstration
 app.py                   point d'entrée de l'application Streamlit
 ui/                      chargement, filtres et écrans de l'interface
@@ -116,4 +131,5 @@ L'application charge `data/processed/articles.parquet` s'il existe, sinon
 `data/processed/demo.parquet` en affichant un bandeau « données fictives ».
 Sans aucun des deux, elle indique la commande à lancer.
 
-À ce stade, aucune analyse sur de vrais articles n'est annoncée.
+Les résultats réels documentés concernent uniquement le snapshot et le périmètre
+du [bilan de validation](docs/data_findings.md), pas l'ensemble de la recherche.

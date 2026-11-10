@@ -5,7 +5,9 @@
 Métadonnées du [dataset arXiv publié sur Kaggle](https://www.kaggle.com/datasets/Cornell-University/arxiv).
 La fiche annonce CC0 pour les métadonnées ; les licences des articles sont
 distinctes. Vérifier la fiche de la version effectivement récupérée.
-Le snapshot réel n'a pas encore été téléchargé ni analysé pour cette contribution.
+Le snapshot téléchargé localement a été traité le 10 novembre 2026 ; le
+[bilan de validation](data_findings.md) indique les effectifs, les contrôles et
+l'empreinte du fichier. Le numéro de version Kaggle reste non renseigné.
 
 Au téléchargement, noter ici ou dans une prochaine PR la version Kaggle,
 la date de récupération et les conditions de la source. `--source-version`
@@ -57,4 +59,5 @@ Le fichier fictif du dépôt sert uniquement au développement et aux tests.
 - [Python email.utils](https://docs.python.org/3/library/email.utils.html)
 
 La première version a été préparée avec une aide IA. Les tests couvrent des cas
-contrôlés ; ils ne remplacent pas la validation sur le snapshot réel.
+contrôlés ; ils sont complétés par les vérifications du snapshot réel décrites
+dans le bilan. Ils ne garantissent pas la justesse scientifique de chaque article.

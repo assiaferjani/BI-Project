@@ -1,4 +1,7 @@
-# Dépendances de cette contribution : données et tests.
+# Données et tests.
 pandas>=2.2,<4
 pyarrow>=18,<27
 pytest>=8,<10
+# Interface.
+streamlit>=1.50,<2
+plotly>=5.24,<8

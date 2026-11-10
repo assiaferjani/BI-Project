@@ -1,0 +1,23 @@
+{
+  "tests_passed": 95,
+  "browser": "Chromium headless",
+  "viewports": [
+    {
+      "width": 1600,
+      "height": 1200
+    },
+    {
+      "width": 390,
+      "height": 844
+    }
+  ],
+  "horizontal_overflow": false,
+  "streamlit_exception": false,
+  "charts_in_dom": 3,
+  "interactions_checked": [
+    "onglet Comparaison",
+    "onglet Exploration et recherche transformer"
+  ],
+  "screenshots": "docs/assets/",
+  "source": "vrai snapshot local"
+}

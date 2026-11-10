@@ -7,6 +7,7 @@ import streamlit as st
 
 from src.metrics import category_share, unique_articles, yearly_change
 from ui.charts import annual_chart, category_chart, growth_chart
+from ui.design import section_intro
 from ui.data import DataSource
 from ui.export import file_name, to_csv_bytes
 from ui.filters import Filters, available_categories
@@ -40,31 +41,34 @@ def results_table(shown: pd.DataFrame, source: DataSource) -> pd.DataFrame:
 
 
 def overview(filtered: pd.DataFrame, filters: Filters) -> None:
+    section_intro("VUE D’ENSEMBLE", "La recherche, en perspective.",
+                  "Les indicateurs de votre sélection, du premier dépôt aux tendances annuelles.")
     total = unique_articles(filtered)
-    left, middle, right = st.columns(3)
+    annual = yearly_change(filtered, year_range=(filters.year_min, filters.year_max))
+    last = annual.iloc[-1]
+    change = last["change_pct"]
+    left, middle, right, growth = st.columns(4)
     left.metric("Articles uniques", format_count(total))
     middle.metric("Période filtrée", f"{filters.year_min} à {filters.year_max}")
     right.metric("Catégories étudiées", len(available_categories(filtered)))
+    growth.metric(f"Variation en {int(last['year'])}",
+                  "Non calculable" if pd.isna(change) else f"{change:+.2f} %")
     if total == 0:
         st.warning(EMPTY_MESSAGE)
         return
-    st.caption(
-        "Un article est compté une seule fois, même s'il porte plusieurs catégories."
-    )
-    annual = yearly_change(filtered, year_range=(filters.year_min, filters.year_max))
-    st.subheader("Dépôts par année")
-    st.plotly_chart(annual_chart(annual), width="stretch", key="annual_chart")
-    st.subheader("Variation annuelle")
-    last = annual.iloc[-1]
-    change = last["change_pct"]
-    st.metric(
-        f"Variation en {int(last['year'])}",
-        "Non calculable" if pd.isna(change) else f"{change:+.2f} %",
-    )
-    if annual["change_pct"].notna().any():
-        st.plotly_chart(growth_chart(annual), width="stretch", key="growth_chart")
-    else:
-        st.info("Aucune variation annuelle calculable pour cette sélection.")
+    st.caption("Un article est compté une seule fois, même s'il porte plusieurs catégories.")
+    trend_column, growth_column = st.columns([1.65, 1], gap="medium")
+    with trend_column, st.container(border=True, key="trend_panel"):
+        st.subheader("Dépôts par année")
+        st.caption("L’évolution du volume d’articles dans votre sélection.")
+        st.plotly_chart(annual_chart(annual), width="stretch", key="annual_chart", theme=None)
+    with growth_column, st.container(border=True, key="growth_panel"):
+        st.subheader("Variation annuelle")
+        st.caption("Le rythme d’évolution par rapport à l’année précédente.")
+        if annual["change_pct"].notna().any():
+            st.plotly_chart(growth_chart(annual), width="stretch", key="growth_chart", theme=None)
+        else:
+            st.info("Aucune variation annuelle calculable pour cette sélection.")
     st.caption(
         "Variation = (N − N précédent) / N précédent × 100. La première année "
         "affichée et les années dont la base est nulle sont non calculables. "
@@ -77,12 +81,14 @@ def overview(filtered: pd.DataFrame, filters: Filters) -> None:
 
 
 def comparison(filtered: pd.DataFrame) -> None:
+    section_intro("REGARDS CROISÉS", "Trois domaines. Des liens multiples.",
+                  "Comparez les catégories et leur place dans les articles sélectionnés.")
     if filtered.empty:
         st.warning(EMPTY_MESSAGE)
         return
     st.subheader("Comparer les catégories")
     shares = category_share(filtered)
-    st.plotly_chart(category_chart(shares), width="stretch", key="category_chart")
+    st.plotly_chart(category_chart(shares), width="stretch", key="category_chart", theme=None)
     st.caption(
         "Un article peut porter plusieurs catégories : la somme peut dépasser "
         "le nombre d'articles uniques, et les parts peuvent dépasser 100 % au total. "
@@ -124,6 +130,8 @@ def article_detail(article: pd.Series, source: DataSource) -> None:
 
 
 def exploration(filtered: pd.DataFrame, filters: Filters, source: DataSource) -> None:
+    section_intro("BIBLIOTHÈQUE DE RECHERCHE", "Votre prochain point de départ.",
+                  "Parcourez les publications, explorez un résumé et emportez votre sélection.")
     total = filtered["id"].nunique()
     if total == 0:
         st.warning(EMPTY_MESSAGE)
@@ -179,6 +187,8 @@ def exploration(filtered: pd.DataFrame, filters: Filters, source: DataSource) ->
 
 
 def method(articles: pd.DataFrame, source: DataSource) -> None:
+    section_intro("EN TOUTE TRANSPARENCE", "Comprendre ce que disent les données.",
+                  "Une source documentée, des règles explicites et des limites à connaître.")
     first_year, last_year = int(articles["year"].min()), int(articles["year"].max())
     st.markdown(
         f"""

@@ -8,10 +8,12 @@ from __future__ import annotations
 import streamlit as st
 
 from ui import screens
+from ui.design import apply_design, hero, sidebar_brand
 from ui.data import DataError, find_source, load_articles
 from ui.filters import Filters, apply_filters, available_categories, year_bounds
 
-st.set_page_config(page_title="arXiv Explorer", page_icon="📚", layout="wide")
+st.set_page_config(page_title="arXiv Explorer · Observatoire de la recherche", page_icon="◈", layout="wide")
+apply_design()
 
 
 @st.cache_resource(show_spinner="Chargement des articles…")
@@ -23,7 +25,8 @@ def cached_articles(path: str, modified: float):
 
 def sidebar_filters(articles) -> Filters:
     first_year, last_year = year_bounds(articles)
-    st.sidebar.header("Filtres")
+    sidebar_brand()
+    st.sidebar.header("Affiner l'exploration")
     if first_year == last_year:
         years = (first_year, last_year)
         st.sidebar.write(f"Année de premier dépôt : {first_year}")
@@ -50,18 +53,15 @@ def sidebar_filters(articles) -> Filters:
         "sans tenir compte des majuscules.",
         key="query",
     )
+    st.sidebar.markdown('<div class="sidebar-rule"></div>', unsafe_allow_html=True)
+    st.sidebar.caption("Trois domaines, une perspective commune.")
+    st.sidebar.caption("cs.AI · Intelligence artificielle\n\ncs.LG · Apprentissage automatique\n\ncs.CL · Traitement du langage")
     return Filters(
         year_min=years[0], year_max=years[1], categories=tuple(categories), query=query
     )
 
 
 def main() -> None:
-    st.title("arXiv Explorer")
-    st.caption(
-        "Comment évoluent les dépôts d'articles en cs.AI, cs.LG et cs.CL, "
-        "et comment retrouver les articles sur un sujet ?"
-    )
-
     try:
         source = find_source()
         articles = cached_articles(str(source.path), source.path.stat().st_mtime)
@@ -72,6 +72,9 @@ def main() -> None:
     if articles.empty:
         st.error(f"Le fichier {source.path} ne contient aucun article.")
         st.stop()
+
+    first, last = year_bounds(articles)
+    hero(len(articles), first, last, is_demo=source.is_demo)
 
     if source.is_demo:
         st.warning(
@@ -94,6 +97,8 @@ def main() -> None:
         screens.exploration(filtered, filters, source)
     with method_tab:
         screens.method(articles, source)
+    st.markdown('<div class="app-footer"><span>arXiv Explorer · Les données au service des idées.</span>'
+                '<span>Assia Ferjani &amp; Ines Makhlouf · Projet BI</span></div>', unsafe_allow_html=True)
 
 
 main()

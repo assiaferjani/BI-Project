@@ -16,6 +16,14 @@ La livraison dans `main` attend les revues et fusions des contributions.
 La [checklist de revue](docs/review_checklist.md) décrit les vérifications
 à reproduire par Ines.
 
+## Aperçu de l'interface
+
+![Vue d'ensemble sur les données réelles](docs/assets/interface-desktop.jpg)
+
+Interface adaptée aux écrans mobiles, palette bleu nuit et sauge, cartes
+synthétiques et graphiques interactifs. [Aperçu mobile](docs/assets/interface-mobile.jpg)
+· [Comparaison](docs/assets/interface-comparison.jpg).
+
 ## Utilisation et démonstration
 
 - [Guide utilisateur](docs/user_guide.md) : filtres, graphiques, recherche et export.

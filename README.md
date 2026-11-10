@@ -10,7 +10,10 @@ Le dataset choisi est [arXiv sur Kaggle](https://www.kaggle.com/datasets/Cornell
 Le projet contient la préparation, les indicateurs et une première interface.
 Le snapshot réel a été traité : **229 620 articles** retenus sur 2020–2024.
 Consulter le [bilan vérifié](docs/data_findings.md) pour la provenance, les chiffres
-et les limites. Les graphiques et l'intégration des PR restantes sont à finaliser.
+et les limites. Recherche, fiches, pagination et export sont intégrés à cette
+branche. Les graphiques et la livraison dans `main` restent à finaliser.
+La [checklist de revue](docs/review_checklist.md) décrit les vérifications
+à reproduire par Ines.
 
 ## Répartition
 

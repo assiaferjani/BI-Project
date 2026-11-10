@@ -13,7 +13,9 @@
 
 ## Ines — personne B
 
-1. Finaliser la revue et l'intégration des PR de conception et de recherche/export.
+1. Relire les PR #10 et #16 : les PR de conception #14 et de recherche/export
+   #13 sont déjà fusionnées dans `feat/arxiv-data-foundation`. Utiliser
+   `docs/review_checklist.md` pour reproduire les contrôles.
 2. Brancher les graphiques sur les fonctions documentées dans `docs/metrics.md`.
 3. Utiliser le même snapshot sur son poste et vérifier les chiffres du bilan réel.
 4. Tester visuellement le parcours et ouvrir l'export dans un tableur.

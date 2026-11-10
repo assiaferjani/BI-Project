@@ -55,3 +55,32 @@ def test_year_filter_changes_the_total(app):
     assert not app.exception
     assert metric(app, "Articles uniques") == "24"
     assert metric(app, "Période filtrée") == "2021 à 2022"
+
+
+def test_search_filters_the_total_and_ignores_case(app):
+    # Un article sur quatre a « Transformers » dans son titre.
+    app.text_input(key="query").set_value("tRANSFORMERS").run()
+    assert not app.exception
+    assert metric(app, "Articles uniques") == "15"
+
+
+def test_search_without_result_shows_a_message_and_no_error(app):
+    app.text_input(key="query").set_value("zzz (introuvable) [?").run()
+    assert not app.exception
+    assert metric(app, "Articles uniques") == "0"
+    assert any("Aucun article ne correspond" in warning.value for warning in app.warning)
+    assert len(app.dataframe) == 0
+
+
+def test_article_detail_handles_a_missing_abstract(app):
+    app.text_input(key="query").set_value("Article 007").run()
+    app.selectbox(key="detail").set_value("test-007").run()
+    assert not app.exception
+    assert any(header.value.startswith("Article 007") for header in app.subheader)
+    assert any("Résumé non disponible" in text.value for text in app.markdown)
+
+
+def test_second_page_lists_the_next_articles(app):
+    app.number_input(key="page").set_value(2).run()
+    assert not app.exception
+    assert any("Articles 26 à 50" in text.value for text in app.markdown)

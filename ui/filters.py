@@ -10,6 +10,8 @@ from dataclasses import dataclass
 
 import pandas as pd
 
+from ui.search import matches
+
 
 @dataclass(frozen=True)
 class Filters:
@@ -17,6 +19,8 @@ class Filters:
     year_max: int
     # Aucune catégorie sélectionnée signifie « toutes ».
     categories: tuple[str, ...] = ()
+    # Expression cherchée dans les titres et les résumés ; vide = pas de recherche.
+    query: str = ""
 
 
 def year_bounds(articles: pd.DataFrame) -> tuple[int, int]:
@@ -39,4 +43,6 @@ def apply_filters(articles: pd.DataFrame, filters: Filters) -> pd.DataFrame:
     if filters.categories:
         chosen = set(filters.categories)
         keep &= articles["selected_categories"].map(lambda codes: not chosen.isdisjoint(codes))
+    if filters.query.strip():
+        keep &= matches(articles, filters.query)
     return articles[keep]

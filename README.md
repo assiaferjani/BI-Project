@@ -96,11 +96,24 @@ deux catégories compte une fois au total, mais dans chacune des deux catégorie
 ```text
 src/prepare_data.py       préparation JSONL → Parquet + rapport qualité
 data/sample/             données fictives de démonstration
-tests/                   cas contrôlés pour le traitement
+app.py                   point d'entrée de l'application Streamlit
+ui/                      chargement, filtres et écrans de l'interface
+tests/                   cas contrôlés pour le traitement et l'interface
 docs/data_dictionary.md   colonnes préparées et règles pour l'interface
 docs/methodology.md       périmètre, règles, limites et provenance
 docs/next_steps.md        tâches d'Assia et d'Ines après cette PR
 ```
 
-Les commandes de lancement de l'application seront ajoutées quand l'interface
-existera. À ce stade, aucune analyse sur de vrais articles n'est annoncée.
+## Lancer l'application
+
+Après la préparation des données (vraies ou de démonstration) :
+
+```bash
+python -m streamlit run app.py
+```
+
+L'application charge `data/processed/articles.parquet` s'il existe, sinon
+`data/processed/demo.parquet` en affichant un bandeau « données fictives ».
+Sans aucun des deux, elle indique la commande à lancer.
+
+À ce stade, aucune analyse sur de vrais articles n'est annoncée.

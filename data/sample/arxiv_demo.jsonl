@@ -1,0 +1,6 @@
+{"id":"demo-001","title":"  Exemple fictif : IA\n et apprentissage ","abstract":"Résumé fictif pour tester la recherche.","authors":"Auteur fictif A","categories":"cs.AI cs.LG","versions":[{"version":"v2","created":"Mon, 1 Jan 2024 10:00:00 GMT"},{"version":"v1","created":"Wed, 1 Jan 2020 10:00:00 GMT"}],"update_date":"2024-01-01"}
+{"id":"demo-002","title":"Exemple fictif : langage","abstract":"Texte fictif sur le langage.","authors":"Auteur fictif B","categories":"cs.CL","versions":[{"version":"v1","created":"Fri, 15 Jan 2021 10:00:00 GMT"}]}
+{"id":"demo-003","title":"Exemple fictif sans résumé","abstract":null,"authors":"Auteur fictif C","categories":"cs.AI","versions":[{"version":"v1","created":"Tue, 31 Dec 2024 23:59:59 GMT"}]}
+{"id":"demo-001","title":"Doublon fictif","categories":"cs.AI","versions":[{"version":"v1","created":"Wed, 1 Jan 2020 10:00:00 GMT"}]}
+{"id":"demo-004","title":"Exemple fictif hors période","categories":"cs.AI","versions":[{"version":"v1","created":"Tue, 31 Dec 2019 23:59:59 GMT"}]}
+{"id":"demo-005","title":"Exemple fictif hors catégories","categories":"math.AG","versions":[{"version":"v1","created":"Fri, 15 Jan 2021 10:00:00 GMT"}]}

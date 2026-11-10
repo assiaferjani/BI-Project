@@ -1,0 +1,4 @@
+# Dépendances de cette contribution : données et tests.
+pandas>=2.2,<4
+pyarrow>=18,<27
+pytest>=8,<10

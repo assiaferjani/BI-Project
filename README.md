@@ -1,7 +1,106 @@
-# BI-Project
+# BI-Project — arXiv Explorer
 
-Projet BI en binôme : exploration interactive du jeu de données Kaggle
-« Spotify Dataset 1921-2020, 600k+ Tracks ».
+Projet BI d'Assia Ferjani (personne A) et Ines Makhlouf (personne B).
 
-Dépôt en cours d'initialisation. La structure, l'installation et le lancement
-seront décrits ici au fil des PR.
+**Question proposée :** comment évoluent les dépôts d'articles dans les catégories
+`cs.AI`, `cs.LG` et `cs.CL` entre 2020 et 2024, et comment retrouver les articles
+correspondant à un sujet ? Ce périmètre reste à valider ensemble.
+
+Le dataset choisi est [arXiv sur Kaggle](https://www.kaggle.com/datasets/Cornell-University/arxiv).
+Cette première contribution prépare les données et leur contrat d'utilisation.
+L'application interactive et les indicateurs seront développés dans les PR suivantes.
+
+## Répartition
+
+| Personne | Réalisation | Revue |
+| --- | --- | --- |
+| Assia — A | Préparation des données, qualité, calculs et tests | PR d'Ines |
+| Ines — B | Interface, graphiques, recherche, export et guide utilisateur | PR d'Assia |
+
+Chaque personne travaille sur une branche par tâche. Une PR est relue par l'autre
+avant fusion vers `main`. Voir [le guide de collaboration](CONTRIBUTING.md).
+
+## Installer — Python 3.11 ou 3.12
+
+Depuis la racine du dépôt, sur Linux / macOS :
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+Sous Windows PowerShell : `py -m venv .venv`, puis
+`.venv\Scripts\Activate.ps1` et la même commande d'installation.
+
+## Essayer sans télécharger Kaggle
+
+Le fichier de démonstration est **fictif** : il sert à vérifier le fonctionnement,
+pas à produire des conclusions scientifiques. Il contient 6 lignes, dont
+3 articles retenus, 1 doublon, 1 article hors période et 1 hors catégories.
+
+```bash
+python -m src.prepare_data \
+  --input data/sample/arxiv_demo.jsonl \
+  --output data/processed/demo.parquet \
+  --source-version synthetic-demo-v1
+python -m pytest
+```
+
+Résultats : `data/processed/demo.parquet` et
+`data/processed/demo.quality.json`. Les sorties sont ignorées par Git.
+Les compteurs de qualité sont aussi affichés dans le terminal.
+
+## Préparer les vraies données
+
+1. Depuis la page Kaggle, télécharger et décompresser
+   `arxiv-metadata-oai-snapshot.json`. Les PDF des articles ne sont pas nécessaires.
+2. Placer ce fichier dans `data/raw/` (créer le dossier si nécessaire).
+3. Noter la version exacte du dataset dans Kaggle et la date du téléchargement.
+4. Remplacer `VERSION_KAGGLE` ci-dessous par cette version, puis lancer :
+
+```bash
+python -m src.prepare_data \
+  --input data/raw/arxiv-metadata-oai-snapshot.json \
+  --output data/processed/articles.parquet \
+  --source-version VERSION_KAGGLE \
+  --start-year 2020 --end-year 2024 \
+  --categories cs.AI cs.LG cs.CL
+```
+
+Le programme lit le fichier entier progressivement et produit un Parquet et un
+rapport JSON : empreinte SHA-256 de la source, paramètres, versions logicielles,
+date d'exécution et compteurs de qualité. La mémoire contient un bloc d'articles
+et les identifiants déjà retenus ; elle ne contient pas le snapshot complet.
+Le traitement du snapshot réel n'a pas encore été validé dans cette première PR.
+
+## Contrat pour l'interface d'Ines
+
+```python
+import pandas as pd
+
+articles = pd.read_parquet("data/processed/articles.parquet")
+total = articles["id"].nunique()
+```
+
+`categories` et `selected_categories` sont des colonnes de listes en Parquet ;
+pandas peut les restituer comme des tableaux NumPy. Ne pas les traiter comme des
+chaînes séparées par des virgules. Utiliser `explode` pour compter par catégorie.
+Tous les indicateurs devront utiliser le même ensemble filtré d'articles.
+
+La date de référence est celle de **v1**, jamais `update_date`. Un article portant
+deux catégories compte une fois au total, mais dans chacune des deux catégories.
+
+## Structure et prochaines contributions
+
+```text
+src/prepare_data.py       préparation JSONL → Parquet + rapport qualité
+data/sample/             données fictives de démonstration
+tests/                   cas contrôlés pour le traitement
+docs/data_dictionary.md   colonnes préparées et règles pour l'interface
+docs/methodology.md       périmètre, règles, limites et provenance
+docs/next_steps.md        tâches d'Assia et d'Ines après cette PR
+```
+
+Les commandes de lancement de l'application seront ajoutées quand l'interface
+existera. À ce stade, aucune analyse sur de vrais articles n'est annoncée.

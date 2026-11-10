@@ -19,7 +19,9 @@ l'interface d'Ines. Toute modification devra être discutée dans une PR.
 Les identifiants fictifs de la démonstration ne donnent pas de vrais liens arXiv.
 Dans pandas, une cellule de liste Parquet peut être un tableau NumPy.
 
-## Calculs à implémenter dans une prochaine PR
+## Calculs disponibles dans `src/metrics.py`
+
+Les fonctions et leurs exemples d'intégration sont décrits dans [metrics.md](metrics.md).
 
 - Total : nombre de `id` distincts après filtres.
 - Dépôts par année : nombre de `id` distincts groupés par `year`.

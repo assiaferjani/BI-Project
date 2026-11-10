@@ -110,6 +110,8 @@ def exploration(filtered: pd.DataFrame, filters: Filters, source: DataSource) ->
         hide_index=True,
         width="stretch",
         column_config={
+            "Titre": st.column_config.TextColumn(width="large"),
+            "Auteurs": st.column_config.TextColumn(width="medium"),
             "Premier dépôt": st.column_config.DateColumn(format="DD/MM/YYYY"),
             "Lien": st.column_config.LinkColumn(display_text="Ouvrir sur arXiv"),
         },

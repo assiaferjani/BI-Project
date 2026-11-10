@@ -43,7 +43,16 @@ def sidebar_filters(articles) -> Filters:
         "Sans sélection, toutes les catégories sont gardées.",
         key="categories",
     )
-    return Filters(year_min=years[0], year_max=years[1], categories=tuple(categories))
+    query = st.sidebar.text_input(
+        "Recherche",
+        placeholder="Mot ou expression",
+        help="Cherche l'expression exacte dans les titres et les résumés, "
+        "sans tenir compte des majuscules.",
+        key="query",
+    )
+    return Filters(
+        year_min=years[0], year_max=years[1], categories=tuple(categories), query=query
+    )
 
 
 def main() -> None:
@@ -82,7 +91,7 @@ def main() -> None:
     with comparison_tab:
         screens.comparison(filtered)
     with exploration_tab:
-        screens.exploration(filtered, source)
+        screens.exploration(filtered, filters, source)
     with method_tab:
         screens.method(articles, source)
 

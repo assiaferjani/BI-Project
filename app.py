@@ -42,7 +42,14 @@ def sidebar_filters(tracks) -> Filters:
         "Sans sélection, toutes les familles sont gardées.",
         key="genres",
     )
-    return Filters(year_min=years[0], year_max=years[1], genres=tuple(genres))
+    query = st.sidebar.text_input(
+        "Recherche",
+        placeholder="Titre ou artiste",
+        help="Cherche l'expression exacte dans les titres et les noms d'artistes, "
+        "sans tenir compte des majuscules ni des accents.",
+        key="query",
+    )
+    return Filters(year_min=years[0], year_max=years[1], genres=tuple(genres), query=query)
 
 
 def main() -> None:
@@ -76,7 +83,7 @@ def main() -> None:
     with comparison_tab:
         screens.comparison(filtered)
     with exploration_tab:
-        screens.exploration(filtered)
+        screens.exploration(filtered, filters)
     with method_tab:
         screens.method(tracks, source)
 

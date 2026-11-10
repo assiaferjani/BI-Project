@@ -18,7 +18,7 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 def test_sample_respects_the_data_contract():
     tracks = load_tracks(REPO_ROOT / SAMPLE_PATH)
-    assert list(tracks.columns) == REQUIRED_COLUMNS
+    assert set(REQUIRED_COLUMNS) <= set(tracks.columns)
     assert tracks["id"].is_unique
     assert tracks["selected_genres"].map(len).min() >= 1
     assert tracks["year"].between(1960, 2020).all()

@@ -7,6 +7,8 @@ from pathlib import Path
 
 import pandas as pd
 
+from ui.search import add_search_column
+
 PROCESSED_PATH = Path("data/processed/tracks.parquet")
 SAMPLE_PATH = Path("data/sample/tracks_sample.parquet")
 
@@ -92,4 +94,4 @@ def load_tracks(path: Path) -> pd.DataFrame:
     for column in LIST_COLUMNS:
         tracks[column] = tracks[column].map(lambda values: tuple(values) if values is not None else ())
     tracks["name"] = tracks["name"].fillna("")
-    return tracks
+    return add_search_column(tracks)

@@ -36,3 +36,13 @@ Cette distinction est nécessaire pour savoir quelle version est livrable.
 Ines reproduit les commandes du README avant d'approuver la contribution.
 Assia doit pouvoir expliquer la date v1, le comptage unique et le calcul de
 croissance annuelle. Chacune doit comprendre le code qu'elle présente.
+
+## Finition de l'interface à la demande d'Assia
+
+Codex a ajouté les graphiques Plotly en appelant les fonctions existantes de
+`src.metrics` sur la table filtrée, puis rédigé le guide utilisateur et le scénario
+de démonstration. Cinq tests supplémentaires vérifient les valeurs réellement
+envoyées aux graphiques, les catégories qui se recouvrent, une période d'un an,
+une recherche vide et le changement de filtres après pagination. La suite complète
+compte 95 tests réussis. Cette aide n'est pas une contribution Git attribuée à Ines.
+Elle doit relire la PR et comprendre les graphiques avant la présentation.

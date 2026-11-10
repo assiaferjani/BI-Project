@@ -1,0 +1,12 @@
+{
+  "real_articles": 229620,
+  "annual_chart_matches_profile": true,
+  "filtered_annual_values": [
+    1591,
+    1669
+  ],
+  "filtered_total": 3260,
+  "csv_rows": 3260,
+  "empty_search_removes_charts": true,
+  "verification": "Streamlit AppTest, pas une revue visuelle du navigateur"
+}

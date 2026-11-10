@@ -1,5 +1,9 @@
 # Vérification du travail publié par Ines
 
+> Finition ultérieure : `feat/arxiv-charts-delivery` ajoute les graphiques et les
+> guides. Ses 95 tests réussis et `reports/charts_validation.json` complètent les
+> relevés d'intégration historiques ci-dessous.
+
 > Relevé historique : les états des PR et les validations ci-dessous décrivent
 > l'essai initial. Les PR #12, #13, #14 et #15 ont depuis été fusionnées dans
 > `feat/arxiv-data-foundation`, et le vrai snapshot a été traité et contrôlé.

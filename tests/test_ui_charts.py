@@ -48,7 +48,7 @@ def test_single_year_does_not_compare_with_an_unselected_year(app):
     assert not app.exception
     assert metric(app, "Variation en 2022") == "Non calculable"
     assert trace(app, "annual_chart")["y"] == [12]
-    assert len(app.get("plotly_chart")) == 2
+    assert not any(chart.proto.id.endswith("growth_chart") for chart in app.get("plotly_chart"))
     assert any("Aucune variation" in item.value for item in app.info)
 
 

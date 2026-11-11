@@ -67,3 +67,23 @@ effacer la recherche. Les anciennes valeurs des graphiques ne restent pas affich
 Les indicateurs décrivent les dépôts arXiv du sous-ensemble, datés par la version
 v1. Ils ne mesurent ni la qualité des articles, ni les citations, ni l'ensemble
 de la recherche mondiale. Consulter l'onglet Méthode et `docs/data_findings.md`.
+
+## Espaces du démonstrateur pédagogique
+
+La version enrichie propose huit espaces. **Tendances** ajoute un calendrier
+mensuel, la base 100 et les effectifs agrégés par mois. **Comparaison** ajoute une
+matrice des intersections (option Jaccard) et une carte des combinaisons exclusives.
+**Vocabulaire** permet de régler le nombre de mots, d'en exclure et de comparer
+deux expressions dans les titres. Le bouton d'exploration d'un mot modifie la
+recherche globale dans la barre latérale.
+
+Dans **Exploration**, tirer un article au hasard ou choisir une fiche, puis
+l'ajouter au **Panier de lecture**. Celui-ci conserve sa sélection malgré les
+changements de filtres, pendant la session du navigateur. Il est exportable et
+peut être vidé. **Atelier** présente un parcours de questions et de compétences.
+
+Les scénarios de la barre latérale initialisent un panorama ou une enquête
+`transformer`. Le mode projection agrandit les explications et réduit le bandeau.
+Les questions à révéler, sous les graphiques, utilisent les filtres courants.
+Voir `docs/teacher_demo.md` pour une séance complète et les règles des nouveaux
+indicateurs.

@@ -46,3 +46,25 @@ envoyées aux graphiques, les catégories qui se recouvrent, une période d'un a
 une recherche vide et le changement de filtres après pagination. La suite complète
 compte 95 tests réussis. Cette aide n'est pas une contribution Git attribuée à Ines.
 Elle doit relire la PR et comprendre les graphiques avant la présentation.
+
+## Refonte visuelle demandée par Assia
+
+Codex a retravaillé la hiérarchie, les couleurs, les cartes et les graphiques,
+avec une identité bleu nuit et sauge. Les données et les fonctions de calcul
+restent celles du projet. Les 95 tests passent. Le rendu a été contrôlé avec
+Chromium sur ordinateur (1600 × 1200) et mobile (390 × 844), sans débordement
+horizontal ; la navigation Comparaison et une recherche dans Exploration ont été
+essayées. Les captures dans `docs/assets/` proviennent du navigateur et du vrai
+snapshot. Cette vérification sur ce poste ne remplace pas l'essai sur celui d'Ines.
+
+## Démonstrateur pour une enseignante
+
+Après clarification de l'usage en classe, Codex a enrichi les analyses avec
+calendrier mensuel, trajectoires par catégorie, Jaccard, combinaisons exclusives,
+vocabulaire des titres et duel d'expressions. Le panier, les scénarios et les
+questions à révéler permettent une démonstration participative.
+Les 110 tests incluent des contrôles de dénominateurs sur un petit corpus dont
+les résultats sont calculables à la main. Les deux agrégats exhaustifs du
+calendrier et des combinaisons retrouvent 229 620 articles sur le vrai snapshot.
+Les captures `showcase-*.jpg` proviennent de Chromium. Les analyses lexicales
+sont descriptives ; aucune inférence sémantique ou mesure de qualité n'est annoncée.

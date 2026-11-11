@@ -1,41 +1,30 @@
 # Prochaines étapes
 
-## Usage en classe
+Toutes les contributions sont fusionnées dans `main`. L'installation a été
+rejouée depuis un clone neuf en suivant uniquement le README : dépendances,
+démonstration fictive, 110 tests et lancement de l'application.
 
-La branche `feat/arxiv-teaching-showcase` enrichit le projet en démonstrateur pour
-une enseignante. Le parcours actuel est décrit dans `docs/teacher_demo.md` : dix
-visualisations, huit espaces, scénarios, questions et panier de lecture. Les 110
-tests passent, et le parcours a été contrôlé dans Chromium sur ordinateur et mobile.
-Le plan de binôme ci-dessous conserve les responsabilités du projet d'origine.
-Pour présenter cet exemple, lancer le scénario Panorama, activer le mode projection,
-puis suivre le guide enseignant. La version Kaggle exacte reste à retrouver ;
-le fichier réellement utilisé est identifié par son empreinte.
-
+Il reste à préparer la soutenance.
 
 ## Assia — personne A
 
-1. Lire `docs/data_findings.md` : le snapshot est traité, les calculs testés et
-   les premiers chiffres réels vérifiés.
+1. Retrouver le numéro de version Kaggle si possible ; l'empreinte exacte du
+   snapshot est déjà conservée dans `reports/dataset_manifest.json`.
 2. Savoir expliquer la date v1, les 229 620 articles uniques, les catégories
    qui se recouvrent et une variation annuelle.
-3. Retrouver le numéro de version Kaggle si possible ; l'empreinte exacte du
-   snapshot est déjà conservée dans le manifeste.
-4. Faire relire le bilan et les contrôles à Ines, puis suivre la fusion des PR.
-5. Vérifier quelques articles à la main et préparer une explication des limites.
+3. Vérifier quelques articles à la main et préparer l'explication des limites.
 
 ## Ines — personne B
 
-1. Relire les PR #10 et #16 : les PR de conception #14 et de recherche/export
-   #13 sont déjà fusionnées dans `feat/arxiv-data-foundation`. Utiliser
-   `docs/review_checklist.md` pour reproduire les contrôles.
-2. Relire et essayer les graphiques désormais branchés sur `src.metrics`,
-   ainsi que `docs/user_guide.md` et `docs/demo_script.md`.
-3. Utiliser le même snapshot sur son poste et vérifier les chiffres du bilan réel.
-4. Tester visuellement le parcours et ouvrir l'export dans un tableur.
-5. Finaliser les captures, les instructions de lancement et le scénario de démo.
+1. Savoir expliquer les filtres communs, la règle « au moins une catégorie »,
+   la recherche littérale et le contenu de l'export.
+2. Savoir expliquer un graphique et un choix d'interface, par exemple le
+   bandeau des données fictives ou le message de résultat vide.
+3. Ouvrir un export dans un tableur avant la démonstration.
 
-## À décider ensemble
+## Ensemble
 
-- Valider les trois catégories et la période proposées.
-- Choisir la version exacte du snapshot utilisée sur les deux ordinateurs.
-- Confirmer les conventions des filtres et le scénario de présentation.
+- Répéter `docs/demo_script.md` avec le même snapshot sur les deux postes.
+- Choisir la PR relue et la correction liée à l'IA à montrer
+  (`docs/ai_usage.md` en liste plusieurs).
+- Préparer ce que les données ne permettent pas de conclure.

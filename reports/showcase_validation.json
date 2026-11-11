@@ -1,0 +1,25 @@
+{
+  "unique_articles": 229620,
+  "chart_instances": 12,
+  "distinct_visualizations": 10,
+  "calendar_sum_matches_total": true,
+  "exclusive_combinations_match_total": true,
+  "transformer_scenario_articles": 3260,
+  "random_discovery_and_basket": true,
+  "initial_load_seconds_this_machine": 4.21,
+  "tests_passed": 110,
+  "browser": "Chromium headless",
+  "desktop_viewport": [
+    1600,
+    1450
+  ],
+  "mobile_viewport": [
+    390,
+    844
+  ],
+  "browser_navigation_and_presets": true,
+  "overview_navigation_buttons": true,
+  "mobile_horizontal_overflow": false,
+  "screenshots": "docs/assets/showcase-*.jpg",
+  "reading_persistence": "session uniquement"
+}

@@ -16,13 +16,35 @@ La livraison dans `main` attend les revues et fusions des contributions.
 La [checklist de revue](docs/review_checklist.md) décrit les vérifications
 à reproduire par Ines.
 
-## Aperçu de l'interface
+## Exemple à présenter en classe
 
-![Vue d'ensemble sur les données réelles](docs/assets/interface-desktop.jpg)
+Le projet sert maintenant de démonstrateur pédagogique : **10 visualisations
+et 8 espaces interactifs**, avec questions à révéler, scénarios en un clic et
+mode projection. Les calculs restent vérifiables sur les articles sources.
+Voir le [parcours enseignant](docs/teacher_demo.md).
 
-Interface adaptée aux écrans mobiles, palette bleu nuit et sauge, cartes
-synthétiques et graphiques interactifs. [Aperçu mobile](docs/assets/interface-mobile.jpg)
-· [Comparaison](docs/assets/interface-comparison.jpg).
+![Tendances et calendrier des dépôts](docs/assets/showcase-trends.jpg)
+
+| Espace | Ce que l'on peut explorer |
+| --- | --- |
+| Vue d'ensemble | Indicateurs, évolution, croissance, calendrier et communautés |
+| Tendances | Carte thermique mensuelle, base 100 et saisonnalité descriptive |
+| Comparaison | Volumes, intersection/Jaccard et combinaisons exclusives |
+| Vocabulaire | Fréquence dans les titres et duel d'expressions normalisé |
+| Exploration | Recherche, pagination, article aléatoire et fiches |
+| Panier de lecture | Sélection indépendante des filtres et export CSV |
+| Atelier | Hypothèses, défis et compétences BI à discuter |
+| Méthode | Source, unités, dénominateurs et limites |
+
+La suite complète compte **110 tests**. La navigation et les scénarios ont été
+contrôlés dans Chromium sur ordinateur et mobile. Les agrégats du calendrier et
+des combinaisons ont été rapprochés des 229 620 articles réels.
+
+[Calendrier et trajectoires](docs/assets/showcase-trends.jpg) ·
+[Recouvrements](docs/assets/showcase-connections.jpg) ·
+[Vocabulaire](docs/assets/showcase-vocabulary.jpg) ·
+[Atelier](docs/assets/showcase-workshop.jpg) ·
+[Mobile](docs/assets/showcase-mobile.jpg)
 
 ## Utilisation et démonstration
 
@@ -32,7 +54,7 @@ synthétiques et graphiques interactifs. [Aperçu mobile](docs/assets/interface-
 - Chiffres annuels consultables en tableau ; variation non calculable explicitée.
 - Recherche, pagination, fiche article et export de tous les résultats filtrés.
 
-La suite comprend **95 tests**. Elle vérifie notamment que les valeurs envoyées
+La version initiale des graphiques comprenait **95 tests** ; le démonstrateur actuel en compte **110**. Elle vérifie notamment que les valeurs envoyées
 aux graphiques changent avec les filtres, sans double comptage ni division par zéro.
 La contribution de finition de l'interface a été assistée par Codex à la demande
 d'Assia ; elle doit être relue et comprise par le binôme.

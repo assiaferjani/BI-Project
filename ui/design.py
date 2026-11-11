@@ -28,12 +28,12 @@ def hero(count: int, first_year: int, last_year: int, *, is_demo: bool):
     <span class="breadcrumb-slash">/</span> INTELLIGENCE ARTIFICIELLE</span>
     <span class="source-badge"><i></i>{mode}</span></div>
     <section class="research-hero">
-      <div class="hero-copy"><div class="eyebrow hero-eyebrow">LES IDÉES LAISSENT DES TRACES.</div>
+      <div class="hero-copy"><div class="eyebrow hero-eyebrow">RESEARCH LAB · APPRENDRE PAR L’EXPLORATION.</div>
       <h1>Explorez la recherche.<br><em>Repérez les tendances.</em></h1>
-      <p>Une autre perspective sur les publications en intelligence artificielle.<br>
-      Comparez les domaines, suivez leur évolution et trouvez votre prochain article.</p>
+      <p>Un laboratoire interactif pour lire, comparer et questionner la recherche.<br>
+      Comparez les domaines, testez vos hypothèses et composez votre parcours de lecture.</p>
       <div class="hero-tags"><span>{amount} articles</span><span>{first_year}—{last_year}</span>
-      <span>cs.AI · cs.LG · cs.CL</span></div></div>
+      <span>10 visualisations · 8 espaces</span></div></div>
       <div class="orbit-art" aria-hidden="true"><div class="orbit orbit-one"></div>
       <div class="orbit orbit-two"></div><div class="orbit orbit-three"></div>
       <div class="orbit-core">a<span>∕</span></div><i class="orbit-point"></i>

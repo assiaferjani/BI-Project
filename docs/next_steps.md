@@ -1,5 +1,17 @@
 # Prochaines étapes
 
+## Usage en classe
+
+La branche `feat/arxiv-teaching-showcase` enrichit le projet en démonstrateur pour
+une enseignante. Le parcours actuel est décrit dans `docs/teacher_demo.md` : dix
+visualisations, huit espaces, scénarios, questions et panier de lecture. Les 110
+tests passent, et le parcours a été contrôlé dans Chromium sur ordinateur et mobile.
+Le plan de binôme ci-dessous conserve les responsabilités du projet d'origine.
+Pour présenter cet exemple, lancer le scénario Panorama, activer le mode projection,
+puis suivre le guide enseignant. La version Kaggle exacte reste à retrouver ;
+le fichier réellement utilisé est identifié par son empreinte.
+
+
 ## Assia — personne A
 
 1. Lire `docs/data_findings.md` : le snapshot est traité, les calculs testés et

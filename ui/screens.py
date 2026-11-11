@@ -8,6 +8,7 @@ import streamlit as st
 from src.metrics import category_share, unique_articles, yearly_change
 from ui.charts import annual_chart, category_chart, growth_chart
 from ui.design import section_intro
+from ui.showcase import save_article
 from ui.data import DataSource
 from ui.export import file_name, to_csv_bytes
 from ui.filters import Filters, available_categories
@@ -111,7 +112,7 @@ def article_label(article: pd.Series) -> str:
     return f"{article['title'] or NO_TITLE} ({article['year']})"
 
 
-def article_detail(article: pd.Series, source: DataSource) -> None:
+def article_detail(article: pd.Series, source: DataSource, *, location="explore") -> None:
     """Fiche d'un article : titre, auteurs, date, catégories, résumé, lien."""
     with st.container(border=True):
         st.subheader(article["title"] or NO_TITLE)
@@ -127,6 +128,10 @@ def article_detail(article: pd.Series, source: DataSource) -> None:
             st.caption("Article fictif de démonstration : il n'existe pas sur arXiv.")
         else:
             st.link_button("Ouvrir sur arXiv", article["arxiv_url"])
+        saved=article.name in st.session_state.get('reading_ids',[])
+        st.button('Déjà dans le panier' if saved else 'Ajouter au panier de lecture',
+                  on_click=save_article,args=(article.name,),disabled=saved,
+                  key=f'save_{location}_{article.name}')
 
 
 def exploration(filtered: pd.DataFrame, filters: Filters, source: DataSource) -> None:
@@ -136,6 +141,13 @@ def exploration(filtered: pd.DataFrame, filters: Filters, source: DataSource) ->
     if total == 0:
         st.warning(EMPTY_MESSAGE)
         return
+
+    if st.button("Découvrir un article au hasard",key='random_article'):
+        st.session_state['spotlight_id']=filtered.sample(1)['id'].iloc[0]
+    spotlight=st.session_state.get('spotlight_id')
+    if spotlight in set(filtered['id']):
+        with st.expander("Votre découverte inattendue",expanded=True):
+            article_detail(filtered.set_index('id').loc[spotlight],source,location='spotlight')
 
     ordered = filtered.sort_values(["submitted_at", "id"], ascending=[False, True])
     pages = page_count(total)

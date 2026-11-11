@@ -78,3 +78,23 @@ h1,h2,h3,p { letter-spacing:-.025em; }
  .app-footer { flex-direction:column; gap:5px; }
 }
 @media(prefers-reduced-motion:reduce) { * { scroll-behavior:auto!important; } }
+
+/* Parcours de démonstration : panneaux, contrôles et repères lisibles. */
+[data-testid="stTabs"] [data-testid="stVerticalBlock"] > [data-testid="stElementContainer"] h3 { font-size:1.14rem; font-weight:650; }
+[data-baseweb="tab-list"] { overflow-x:auto; scrollbar-width:thin; gap:22px; }
+[data-testid="stButton"] button { border-radius:9px; border-color:#d5e3e4; color:#185b60; font-weight:550; }
+[data-testid="stButton"] button:hover { border-color:#087f78; background:#e5f3ee; color:#08645f; }
+[data-testid="stSidebar"] [data-testid="stButton"] button { background:#193c46; color:#c5e9df; border-color:#365963; }
+[data-testid="stSidebar"] [data-testid="stExpander"] { background:transparent; border-color:#36515a; }
+[data-testid="stSidebar"] [data-testid="stExpander"] summary { color:#b7d7d4; }
+[data-testid="stSidebar"] [data-testid="stCheckbox"] p { color:#d7e4e7; }
+
+/* Une introduction plus courte laisse la place aux données en projection. */
+@media(min-width:769px) {
+ .research-hero { min-height:240px; padding:27px 36px; }
+ .research-hero h1 { font-size:2.55rem; }
+ .hero-eyebrow { margin-bottom:12px; }
+ .research-hero p { margin-bottom:8px; }
+ .hero-tags { margin-top:14px; }
+ .orbit-art { transform:scale(.8); transform-origin:top right; top:0; }
+}

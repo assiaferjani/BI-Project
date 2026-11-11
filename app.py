@@ -9,7 +9,7 @@ import streamlit as st
 
 from ui import screens, showcase
 from ui.design import apply_design, hero, sidebar_brand
-from ui.data import DataError, find_source, load_articles
+from ui.data import DataError, find_source, has_abstracts, load_articles
 from ui.filters import Filters, apply_filters, available_categories, year_bounds
 
 st.set_page_config(page_title="arXiv Explorer · Observatoire de la recherche", page_icon="◈", layout="wide")
@@ -21,6 +21,11 @@ def cached_articles(path: str, modified: float):
     # Table partagée entre les sessions et jamais modifiée après chargement.
     # `modified` invalide le cache quand le fichier préparé est régénéré.
     return load_articles(path)
+
+
+@st.cache_resource(show_spinner=False)
+def cached_has_abstracts(path: str, modified: float) -> bool:
+    return has_abstracts(cached_articles(path, modified))
 
 
 def preset(name, first, last):
@@ -99,6 +104,13 @@ def main() -> None:
             f"Données fictives de démonstration : {len(articles)} articles inventés. "
             "Les chiffres affichés ne sont pas des résultats et les articles n'existent "
             "pas sur arXiv. Préparez le vrai fichier avec la commande du README."
+        )
+
+    if not source.is_demo and not cached_has_abstracts(str(source.path), source.path.stat().st_mtime):
+        st.info(
+            "Version en ligne allégée : les résumés ne sont pas embarqués. La recherche "
+            "porte sur les titres seulement et les fiches renvoient vers arXiv pour le "
+            "résumé. Les chiffres et les graphiques sont ceux du jeu complet."
         )
 
     filters = sidebar_filters(articles)

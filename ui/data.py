@@ -69,6 +69,11 @@ def validate(articles: pd.DataFrame) -> None:
         )
 
 
+def has_abstracts(articles: pd.DataFrame) -> bool:
+    """Faux pour la version en ligne, publiée sans les résumés (scripts/build_pages.py)."""
+    return bool(articles["abstract"].ne("").any())
+
+
 def load_articles(path: Path) -> pd.DataFrame:
     """Lit le fichier Parquet et renvoie une table conforme au contrat."""
     try:

@@ -2,19 +2,21 @@
 
 Projet BI d'Assia Ferjani (personne A) et Ines Makhlouf (personne B).
 
-**Question proposée :** comment évoluent les dépôts d'articles dans les catégories
+**Question :** comment évoluent les dépôts d'articles dans les catégories
 `cs.AI`, `cs.LG` et `cs.CL` entre 2020 et 2024, et comment retrouver les articles
-correspondant à un sujet ? Ce périmètre reste à valider ensemble.
+correspondant à un sujet ?
+
+**Public :** étudiants et personnes qui commencent une veille scientifique.
 
 Le dataset choisi est [arXiv sur Kaggle](https://www.kaggle.com/datasets/Cornell-University/arxiv).
-Le projet contient la préparation, les indicateurs et une première interface.
-Le snapshot réel a été traité : **229 620 articles** retenus sur 2020–2024.
-Consulter le [bilan vérifié](docs/data_findings.md) pour la provenance, les chiffres
-et les limites. Recherche, fiches, pagination et export sont intégrés à cette
-branche. Les graphiques annuels, la variation et la comparaison sont disponibles.
-La livraison dans `main` attend les revues et fusions des contributions.
-La [checklist de revue](docs/review_checklist.md) décrit les vérifications
-à reproduire par Ines.
+Le projet contient la préparation des données, les indicateurs et l'application
+interactive. Le snapshot réel a été traité : **229 620 articles** retenus sur
+2020–2024. Consulter le [bilan vérifié](docs/data_findings.md) pour la
+provenance, les chiffres et les limites.
+
+Toutes les contributions sont fusionnées dans `main` après revue par l'autre
+membre du binôme. La [checklist de revue](docs/review_checklist.md) décrit les
+vérifications reproduites avant fusion.
 
 ## Exemple à présenter en classe
 
@@ -54,10 +56,8 @@ des combinaisons ont été rapprochés des 229 620 articles réels.
 - Chiffres annuels consultables en tableau ; variation non calculable explicitée.
 - Recherche, pagination, fiche article et export de tous les résultats filtrés.
 
-La version initiale des graphiques comprenait **95 tests** ; le démonstrateur actuel en compte **110**. Elle vérifie notamment que les valeurs envoyées
-aux graphiques changent avec les filtres, sans double comptage ni division par zéro.
-La contribution de finition de l'interface a été assistée par Codex à la demande
-d'Assia ; elle doit être relue et comprise par le binôme.
+Les tests vérifient notamment que les valeurs envoyées aux graphiques changent
+avec les filtres, sans double comptage ni division par zéro.
 
 ## Répartition
 
@@ -69,7 +69,28 @@ d'Assia ; elle doit être relue et comprise par le binôme.
 Chaque personne travaille sur une branche par tâche. Une PR est relue par l'autre
 avant fusion vers `main`. Voir [le guide de collaboration](CONTRIBUTING.md).
 
-## Installer — Python 3.11 ou 3.12
+### Contributions réalisées
+
+| PR | Auteure | Contenu | Relue par |
+| --- | --- | --- | --- |
+| #10 | Assia | Pipeline de préparation, données fictives, documentation de base | Ines |
+| #12 | Ines | Chargement des articles, filtres années / catégories, structure des écrans | fusionnée par Assia, sans revue écrite |
+| #13 | Ines | Recherche, fiche d'un article, pagination, export CSV | Assia |
+| #14 | Ines | Maquette des écrans et décisions d'interface | Assia |
+| #15 | Assia | Indicateurs (`src/metrics.py`) | Ines |
+| #16 | Assia | Validation sur le snapshot réel, profil et bilans | Ines |
+| #17 | Assia | Graphiques annuels et par catégorie, guide utilisateur | Ines |
+| #18 | Assia | Refonte visuelle | Ines |
+| #19 | Assia | Dix visualisations et parcours pour la classe | Ines |
+| #20 | Ines | Intégration de #18 et #19, déjà relues, dans la branche commune | sans revue (aucun changement nouveau) |
+
+Les deux membres ont utilisé une aide IA (Codex pour Assia, Claude Code pour
+Ines). Le détail des demandes, des défauts trouvés et des vérifications est dans
+[docs/ai_usage.md](docs/ai_usage.md).
+
+## Installer — Python 3.11 ou plus récent
+
+Testé avec Python 3.11 et 3.14.
 
 Depuis la racine du dépôt, sur Linux / macOS :
 
@@ -81,6 +102,9 @@ python -m pip install -r requirements.txt
 
 Sous Windows PowerShell : `py -m venv .venv`, puis
 `.venv\Scripts\Activate.ps1` et la même commande d'installation.
+
+Sur Debian / Ubuntu, si la première commande échoue avec « ensurepip is not
+available », installer d'abord le paquet `python3-venv`.
 
 ## Essayer sans télécharger Kaggle
 
@@ -133,7 +157,7 @@ python -m src.profile_data \
   --output reports/arxiv_profile.json
 ```
 
-## Contrat pour l'interface d'Ines
+## Contrat de données pour l'interface
 
 ```python
 import pandas as pd
@@ -150,12 +174,13 @@ Tous les indicateurs devront utiliser le même ensemble filtré d'articles.
 La date de référence est celle de **v1**, jamais `update_date`. Un article portant
 deux catégories compte une fois au total, mais dans chacune des deux catégories.
 
-## Structure et prochaines contributions
+## Structure du dépôt
 
 ```text
 src/prepare_data.py       préparation JSONL → Parquet + rapport qualité
 src/profile_data.py       contrôle du contrat et bilan du Parquet
 src/metrics.py            calculs des indicateurs BI
+src/discovery.py          agrégats exploratoires (calendrier, recouvrements, vocabulaire)
 reports/                 petits bilans vérifiés, sans les articles
 data/sample/             données fictives de démonstration
 app.py                   point d'entrée de l'application Streamlit
@@ -163,7 +188,11 @@ ui/                      chargement, filtres et écrans de l'interface
 tests/                   cas contrôlés pour le traitement et l'interface
 docs/data_dictionary.md   colonnes préparées et règles pour l'interface
 docs/methodology.md       périmètre, règles, limites et provenance
-docs/next_steps.md        tâches d'Assia et d'Ines après cette PR
+docs/design.md            écrans et décisions d'interface
+docs/user_guide.md        guide utilisateur
+docs/demo_script.md       scénario de soutenance
+docs/ai_usage.md          aide IA utilisée et vérifications
+docs/next_steps.md        ce qu'il reste à faire avant la soutenance
 ```
 
 ## Lancer l'application

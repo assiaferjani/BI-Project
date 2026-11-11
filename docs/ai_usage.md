@@ -1,7 +1,8 @@
 # Utilisation de l'IA et vérifications
 
-Ce journal décrit l'aide apportée par Codex dans cette contribution. Il ne
-remplace pas la revue et l'explication personnelle de chaque membre du binôme.
+Ce journal décrit l'aide apportée par Codex (côté Assia) et par Claude Code
+(côté Ines, dernière section). Il ne remplace pas la revue et l'explication
+personnelle de chaque membre du binôme.
 
 ## Besoin formulé
 
@@ -68,3 +69,33 @@ les résultats sont calculables à la main. Les deux agrégats exhaustifs du
 calendrier et des combinaisons retrouvent 229 620 articles sur le vrai snapshot.
 Les captures `showcase-*.jpg` proviennent de Chromium. Les analyses lexicales
 sont descriptives ; aucune inférence sémantique ou mesure de qualité n'est annoncée.
+
+## Interface et revues côté Ines
+
+Claude Code a écrit les contributions d'Ines (#12, #13, #14) et exécuté les
+contrôles avant chaque approbation des PR d'Assia. Demandes formulées :
+construire des filtres qui partagent la même table avec tous les indicateurs,
+prévoir le cas vide, puis tester les PR du binôme avant fusion.
+
+Défauts détectés et corrections :
+
+- **Mauvais jeu de données au départ.** Les trois premières PR (#8, #9, #11)
+  portaient sur un autre dataset à la suite d'un lien erroné. Elles ont été
+  fermées et refaites sur arXiv à partir du contrat de `docs/data_dictionary.md`.
+- **Liste illisible sur les vraies données.** Sur les 229 620 articles, les
+  titres et les auteurs, très longs, repoussaient la date et le lien hors de
+  l'écran. Le défaut n'apparaissait pas sur les données fictives. Correction :
+  largeur limitée des deux colonnes (#13).
+- **Recherche sans accents abandonnée.** La première version neutralisait les
+  accents avec une colonne de texte normalisé. Appliquée aux résumés, cette
+  colonne aurait gardé en mémoire une seconde copie de tout le texte. La
+  recherche ignore donc seulement la casse ; la limite est écrite dans la PR #13.
+- **Fusion dans le mauvais ordre.** #17 a été fusionnée avant #18 : la refonte
+  et les dix visualisations n'avaient pas atteint la branche commune. Le
+  contrôle `git merge-base --is-ancestor` l'a montré avant la fusion vers
+  `main` ; la PR #20 a rattrapé l'écart.
+
+Vérification indépendante des données : le pipeline a été relancé sur le poste
+d'Ines à partir d'un nouveau téléchargement Kaggle. L'empreinte SHA-256 de la
+source, celle du Parquet et tous les compteurs sont identiques à ceux de
+`reports/` (3 233 620 lignes lues, 229 620 articles retenus).

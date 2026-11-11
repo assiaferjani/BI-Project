@@ -38,7 +38,7 @@ Voir le [parcours enseignant](docs/teacher_demo.md).
 | Atelier | Hypothèses, défis et compétences BI à discuter |
 | Méthode | Source, unités, dénominateurs et limites |
 
-La suite complète compte **110 tests**. La navigation et les scénarios ont été
+La suite complète compte **114 tests**. La navigation et les scénarios ont été
 contrôlés dans Chromium sur ordinateur et mobile. Les agrégats du calendrier et
 des combinaisons ont été rapprochés des 229 620 articles réels.
 
@@ -183,6 +183,8 @@ src/metrics.py            calculs des indicateurs BI
 src/discovery.py          agrégats exploratoires (calendrier, recouvrements, vocabulaire)
 reports/                 petits bilans vérifiés, sans les articles
 data/sample/             données fictives de démonstration
+scripts/build_pages.py    version statique pour GitHub Pages
+pages/                   page d'accueil stlite et données en ligne sans résumés
 app.py                   point d'entrée de l'application Streamlit
 ui/                      chargement, filtres et écrans de l'interface
 tests/                   cas contrôlés pour le traitement et l'interface
@@ -206,6 +208,32 @@ python -m streamlit run app.py
 L'application charge `data/processed/articles.parquet` s'il existe, sinon
 `data/processed/demo.parquet` en affichant un bandeau « données fictives ».
 Sans aucun des deux, elle indique la commande à lancer.
+
+## Version en ligne (GitHub Pages)
+
+GitHub Pages ne sert que des fichiers statiques : l'application y tourne dans le
+navigateur avec [stlite](https://github.com/whitphx/stlite), sans serveur Python.
+Adresse une fois Pages activé : <https://assiaferjani.github.io/BI-Project/>.
+
+- **Données.** `pages/data/articles.parquet` contient les 229 620 articles
+  **sans les résumés** (12,7 Mo au lieu de 180 Mo). Les chiffres et graphiques
+  sont identiques ; la recherche porte sur les titres seulement et un bandeau
+  le signale. C'est la seule sortie de traitement versionnée.
+- **Déploiement.** Chaque fusion dans `main` lance
+  `.github/workflows/pages.yml`. Réglage à faire une fois par une
+  administratrice : Settings → Pages → Source « GitHub Actions ». Sur un dépôt
+  privé, Pages exige une offre GitHub payante ; le site publié est public.
+- **Premier chargement.** Le navigateur télécharge Python et les bibliothèques :
+  compter de vingt secondes à quelques minutes selon la connexion.
+
+Régénérer les données en ligne après une nouvelle préparation, et tester le
+site en local :
+
+```bash
+python scripts/build_pages.py slim
+python scripts/build_pages.py site
+python -m http.server 8000 -d _site
+```
 
 Les résultats réels documentés concernent uniquement le snapshot et le périmètre
 du [bilan de validation](docs/data_findings.md), pas l'ensemble de la recherche.

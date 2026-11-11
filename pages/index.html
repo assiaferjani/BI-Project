@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>arXiv Explorer · Observatoire de la recherche</title>
+    <meta
+      name="description"
+      content="Dépôts arXiv en cs.AI, cs.LG et cs.CL de 2020 à 2024 : tendances, comparaisons et recherche d'articles."
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.1/build/stlite.css"
+    />
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>Cette application a besoin de JavaScript pour fonctionner.</noscript>
+    <!--
+      L'application Streamlit tourne dans le navigateur (stlite). Le premier
+      chargement télécharge Python et les données : compter une à deux minutes.
+      Ce fichier est un modèle : scripts/build_pages.py y insère la configuration.
+    -->
+    <script type="module">
+      import { mount } from "https://cdn.jsdelivr.net/npm/@stlite/browser@1.12.1/build/stlite.js";
+
+      mount(
+        {
+          entrypoint: "app.py",
+          requirements: ["plotly", "pyarrow"],
+          archives: [{ url: "./app.zip", format: "zip" }],
+          files: {
+            "data/processed/articles.parquet": { url: "./data/articles.parquet" },
+          },
+          streamlitConfig: __STREAMLIT_CONFIG__,
+        },
+        document.getElementById("root"),
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,43 @@
+{
+  "schema_version": 1,
+  "source": {
+    "filename": "arxiv-metadata-oai-snapshot.json",
+    "version": "kaggle-version-not-recorded",
+    "sha256": "97a7fee00eac38ee5ea92d5cddae351cf3cbb444775a397ac60efb773f217b10"
+  },
+  "generated_at_utc": "2026-11-10T16:25:43.022222+00:00",
+  "runtime": {
+    "python": "3.11.18",
+    "pyarrow": "26.0.1"
+  },
+  "parameters": {
+    "start_year": 2020,
+    "end_year": 2024,
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "batch_size": 10000
+  },
+  "lines_read": 3233620,
+  "outcomes": {
+    "blank_lines": 0,
+    "invalid_json": 0,
+    "invalid_record": 0,
+    "invalid_id": 0,
+    "missing_v1": 0,
+    "invalid_v1_date": 0,
+    "outside_years": 2234846,
+    "invalid_categories": 0,
+    "outside_categories": 769154,
+    "duplicate_retained_id": 0,
+    "retained": 229620
+  },
+  "missing_text_in_retained": {
+    "title": 0,
+    "abstract": 0,
+    "authors": 0
+  },
+  "output_filename": "articles.parquet"
+}

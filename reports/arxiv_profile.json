@@ -1,0 +1,67 @@
+{
+  "rows": 229620,
+  "unique_articles": 229620,
+  "checks": {
+    "ids_nonempty_strings": true,
+    "ids_unique": true,
+    "dates_valid": true,
+    "year_matches_submission": true,
+    "categories_valid": true,
+    "selected_categories_valid": true,
+    "text_fields_are_strings": true,
+    "selected_categories_in_original": true
+  },
+  "first_submission": "2020-01-01",
+  "last_submission": "2024-12-31",
+  "missing_text": {
+    "title": 0,
+    "abstract": 0,
+    "authors": 0
+  },
+  "articles_with_multiple_selected_categories": 65207,
+  "category_memberships": 302098,
+  "annual": [
+    {
+      "year": 2020,
+      "articles": 33566,
+      "change_pct": null
+    },
+    {
+      "year": 2021,
+      "articles": 37160,
+      "change_pct": 10.7072633022
+    },
+    {
+      "year": 2022,
+      "articles": 40536,
+      "change_pct": 9.0850376749
+    },
+    {
+      "year": 2023,
+      "articles": 51037,
+      "change_pct": 25.9053680679
+    },
+    {
+      "year": 2024,
+      "articles": 67321,
+      "change_pct": 31.9062640829
+    }
+  ],
+  "categories": [
+    {
+      "category": "cs.AI",
+      "articles": 89660,
+      "share_pct": 39.0471213309
+    },
+    {
+      "category": "cs.CL",
+      "articles": 58471,
+      "share_pct": 25.4642452748
+    },
+    {
+      "category": "cs.LG",
+      "articles": 153967,
+      "share_pct": 67.0529570595
+    }
+  ]
+}

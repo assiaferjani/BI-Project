@@ -5,6 +5,8 @@ from __future__ import annotations
 import pandas as pd
 import streamlit as st
 
+from src.metrics import category_share, unique_articles, yearly_change
+from ui.charts import annual_chart, category_chart, growth_chart
 from ui.data import DataSource
 from ui.export import file_name, to_csv_bytes
 from ui.filters import Filters, available_categories
@@ -38,7 +40,7 @@ def results_table(shown: pd.DataFrame, source: DataSource) -> pd.DataFrame:
 
 
 def overview(filtered: pd.DataFrame, filters: Filters) -> None:
-    total = filtered["id"].nunique()
+    total = unique_articles(filtered)
     left, middle, right = st.columns(3)
     left.metric("Articles uniques", format_count(total))
     middle.metric("Période filtrée", f"{filters.year_min} à {filters.year_max}")
@@ -49,15 +51,49 @@ def overview(filtered: pd.DataFrame, filters: Filters) -> None:
     st.caption(
         "Un article est compté une seule fois, même s'il porte plusieurs catégories."
     )
+    annual = yearly_change(filtered, year_range=(filters.year_min, filters.year_max))
+    st.subheader("Dépôts par année")
+    st.plotly_chart(annual_chart(annual), width="stretch", key="annual_chart")
+    st.subheader("Variation annuelle")
+    last = annual.iloc[-1]
+    change = last["change_pct"]
+    st.metric(
+        f"Variation en {int(last['year'])}",
+        "Non calculable" if pd.isna(change) else f"{change:+.2f} %",
+    )
+    if annual["change_pct"].notna().any():
+        st.plotly_chart(growth_chart(annual), width="stretch", key="growth_chart")
+    else:
+        st.info("Aucune variation annuelle calculable pour cette sélection.")
+    st.caption(
+        "Variation = (N − N précédent) / N précédent × 100. La première année "
+        "affichée et les années dont la base est nulle sont non calculables. "
+        "Les années sans résultat dans la période couverte valent zéro."
+    )
+    with st.expander("Voir les chiffres annuels"):
+        table = annual.rename(columns={"year": "Année", "articles": "Articles uniques",
+                                       "change_pct": "Variation (%)"})
+        st.dataframe(table, hide_index=True, width="stretch")
 
 
 def comparison(filtered: pd.DataFrame) -> None:
     if filtered.empty:
         st.warning(EMPTY_MESSAGE)
         return
+    st.subheader("Comparer les catégories")
+    shares = category_share(filtered)
+    st.plotly_chart(category_chart(shares), width="stretch", key="category_chart")
     st.caption(
-        "Un article peut porter plusieurs catégories : la somme des catégories "
-        "dépasse le nombre d'articles uniques."
+        "Un article peut porter plusieurs catégories : la somme peut dépasser "
+        "le nombre d'articles uniques, et les parts peuvent dépasser 100 % au total. "
+        "Chaque part utilise le total des articles filtrés comme dénominateur. "
+        "Toutes les catégories étudiées des articles retenus sont montrées : "
+        "un filtre cs.AI peut aussi faire apparaître cs.LG pour un article commun."
+    )
+    st.dataframe(
+        shares.rename(columns={"category": "Catégorie", "articles": "Articles uniques",
+                               "share_pct": "Part des articles (%)"}),
+        hide_index=True, width="stretch",
     )
 
 

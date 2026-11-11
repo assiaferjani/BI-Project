@@ -2,23 +2,25 @@
 
 ## Assia — personne A
 
-1. Comprendre `normalize` et les règles de dates, catégories et doublons.
-2. Faire relire cette contribution à Ines avant de la fusionner.
-3. Télécharger le snapshot Kaggle, noter sa version et lancer le traitement réel.
-4. Vérifier le rapport : volumes, exclusions et quelques articles à la main.
-5. Ouvrir une PR avec les observations de qualité et le dictionnaire corrigé
-   si le vrai fichier révèle des différences ; ne pas commiter les gros fichiers.
-6. Dans une branche `feat/metrics`, développer les calculs et leurs tests.
+1. Lire `docs/data_findings.md` : le snapshot est traité, les calculs testés et
+   les premiers chiffres réels vérifiés.
+2. Savoir expliquer la date v1, les 229 620 articles uniques, les catégories
+   qui se recouvrent et une variation annuelle.
+3. Retrouver le numéro de version Kaggle si possible ; l'empreinte exacte du
+   snapshot est déjà conservée dans le manifeste.
+4. Faire relire le bilan et les contrôles à Ines, puis suivre la fusion des PR.
+5. Vérifier quelques articles à la main et préparer une explication des limites.
 
 ## Ines — personne B
 
-1. Cloner le dépôt et récupérer la branche proposée pour la revue.
-2. Suivre les commandes de démonstration du README et exécuter les tests.
-3. Confirmer les colonnes et proposer une maquette des écrans.
-4. Après fusion, partir de `main` à jour dans une branche `feat/app-filters`.
-5. Ajouter Streamlit, construire le chargement et les filtres ; gérer les données
-   absentes et les résultats vides. Étiqueter explicitement toute démonstration fictive.
-6. Ajouter graphiques, recherche et export dans de petites PR relues par Assia.
+1. Relire les PR #10 et #16 : les PR de conception #14 et de recherche/export
+   #13 sont déjà fusionnées dans `feat/arxiv-data-foundation`. Utiliser
+   `docs/review_checklist.md` pour reproduire les contrôles.
+2. Relire et essayer les graphiques désormais branchés sur `src.metrics`,
+   ainsi que `docs/user_guide.md` et `docs/demo_script.md`.
+3. Utiliser le même snapshot sur son poste et vérifier les chiffres du bilan réel.
+4. Tester visuellement le parcours et ouvrir l'export dans un tableur.
+5. Finaliser les captures, les instructions de lancement et le scénario de démo.
 
 ## À décider ensemble
 

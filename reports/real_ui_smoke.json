@@ -1,0 +1,22 @@
+{
+  "ui_branch": "feat/arxiv-search-export",
+  "ui_revision": "31f3743",
+  "all_articles": 229620,
+  "cs_CL_articles": 58471,
+  "filtered_case": {
+    "years": [
+      2023,
+      2024
+    ],
+    "categories": [
+      "cs.CL"
+    ],
+    "query": "transformer",
+    "articles": 3260,
+    "csv_rows": 3260
+  },
+  "page_2_ok": true,
+  "empty_search_ok": true,
+  "no_demo_banner": true,
+  "elapsed_seconds": 3.19
+}

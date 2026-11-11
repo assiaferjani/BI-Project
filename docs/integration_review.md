@@ -1,9 +1,30 @@
 # Vérification du travail publié par Ines
 
+> Finition ultérieure : `feat/arxiv-charts-delivery` ajoute les graphiques et les
+> guides. Ses 95 tests réussis et `reports/charts_validation.json` complètent les
+> relevés d'intégration historiques ci-dessous.
+
+> Relevé historique : les états des PR et les validations ci-dessous décrivent
+> l'essai initial. Les PR #12, #13, #14 et #15 ont depuis été fusionnées dans
+> `feat/arxiv-data-foundation`, et le vrai snapshot a été traité et contrôlé.
+> Le bilan actuel des données réelles se trouve dans [data_findings.md](data_findings.md).
+
 Vérification du 10 novembre 2026 sur les branches GitHub disponibles à cette date.
 Ce relevé porte sur du code publié, pas sur d'éventuels changements locaux d'Ines.
 
-## Contributions examinées
+## État après intégration des PR d'Ines
+
+Les PR #13 et #14 ont été approuvées et fusionnées dans la branche commune.
+La branche de validation des données réelles inclut maintenant cette branche.
+La suite complète compte **90 tests réussis**, dont deux contrôles croisant
+pipeline, filtres, indicateurs et CSV. Le résultat attendu de la sélection
+contrôlée de six articles et le cas vide sont désormais des tests persistants
+(`tests/test_metrics_ui_integration.py`).
+
+La PR #16 est destinée à la revue d'Ines. Les graphiques restent à réaliser.
+La checklist actuelle est dans [review_checklist.md](review_checklist.md).
+
+## Contributions examinées initialement
 
 | PR | Travail | Révision examinée |
 | --- | --- | --- |

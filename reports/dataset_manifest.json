@@ -1,0 +1,21 @@
+{
+  "source_file": "arxiv-metadata-oai-snapshot.json",
+  "source_sha256": "97a7fee00eac38ee5ea92d5cddae351cf3cbb444775a397ac60efb773f217b10",
+  "source_bytes": 5667572509,
+  "kaggle_version": null,
+  "kaggle_version_note": "Le numéro de version Kaggle n’a pas été communiqué avec archive.zip.",
+  "prepared_file": "articles.parquet",
+  "prepared_sha256": "c2f67d5f38e0b50c95e75fa59cc2cae759e77efd562168ec2e9dad0694f5a40c",
+  "prepared_bytes": 180322834,
+  "preparation_code_commit": "9d5f67d",
+  "parameters": {
+    "start_year": 2020,
+    "end_year": 2024,
+    "categories": [
+      "cs.AI",
+      "cs.CL",
+      "cs.LG"
+    ],
+    "batch_size": 10000
+  }
+}

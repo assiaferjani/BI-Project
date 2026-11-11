@@ -16,7 +16,8 @@
 1. Relire les PR #10 et #16 : les PR de conception #14 et de recherche/export
    #13 sont déjà fusionnées dans `feat/arxiv-data-foundation`. Utiliser
    `docs/review_checklist.md` pour reproduire les contrôles.
-2. Brancher les graphiques sur les fonctions documentées dans `docs/metrics.md`.
+2. Relire et essayer les graphiques désormais branchés sur `src.metrics`,
+   ainsi que `docs/user_guide.md` et `docs/demo_script.md`.
 3. Utiliser le même snapshot sur son poste et vérifier les chiffres du bilan réel.
 4. Tester visuellement le parcours et ouvrir l'export dans un tableur.
 5. Finaliser les captures, les instructions de lancement et le scénario de démo.

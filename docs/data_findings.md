@@ -1,5 +1,11 @@
 # Première validation sur le vrai snapshot arXiv
 
+> Mise à jour de l'interface : les graphiques sont désormais implémentés dans la
+> branche `feat/arxiv-charts-delivery`. Leurs valeurs ont été vérifiées avec
+> Streamlit AppTest sur le snapshot réel ; voir `reports/charts_validation.json`.
+> La suite complète de cette branche compte 95 tests réussis. Les mentions de
+> graphiques à construire ci-dessous décrivent le bilan initial.
+
 Traitement effectué le 10 novembre 2026 sur le fichier contenu dans
 `archive.zip`, téléchargé localement. Il s'agit de vrais articles et non du
 petit jeu fictif utilisé pour les tests.

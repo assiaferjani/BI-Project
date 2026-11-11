@@ -1,0 +1,19 @@
+{
+  "real_articles": 229620,
+  "annual_chart_matches_profile": true,
+  "filtered_annual_values": [
+    1591,
+    1669
+  ],
+  "filtered_total": 3260,
+  "csv_rows": 3260,
+  "empty_search_removes_charts": true,
+  "verification": "Streamlit AppTest, pas une revue visuelle du navigateur",
+  "fresh_clone": true,
+  "fresh_python_environment": true,
+  "dependency_installation": "uv pip install -r requirements.txt",
+  "fresh_clone_tests_passed": 95,
+  "fresh_demo_articles": 3,
+  "fresh_demo_chart_count": 3,
+  "browser_visual_review": false
+}

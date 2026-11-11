@@ -11,9 +11,23 @@ Le projet contient la préparation, les indicateurs et une première interface.
 Le snapshot réel a été traité : **229 620 articles** retenus sur 2020–2024.
 Consulter le [bilan vérifié](docs/data_findings.md) pour la provenance, les chiffres
 et les limites. Recherche, fiches, pagination et export sont intégrés à cette
-branche. Les graphiques et la livraison dans `main` restent à finaliser.
+branche. Les graphiques annuels, la variation et la comparaison sont disponibles.
+La livraison dans `main` attend les revues et fusions des contributions.
 La [checklist de revue](docs/review_checklist.md) décrit les vérifications
 à reproduire par Ines.
+
+## Utilisation et démonstration
+
+- [Guide utilisateur](docs/user_guide.md) : filtres, graphiques, recherche et export.
+- [Scénario de démonstration](docs/demo_script.md) : parcours et explications à préparer.
+- Graphiques interactifs : dépôts annuels, croissance et comparaison des catégories.
+- Chiffres annuels consultables en tableau ; variation non calculable explicitée.
+- Recherche, pagination, fiche article et export de tous les résultats filtrés.
+
+La suite comprend **95 tests**. Elle vérifie notamment que les valeurs envoyées
+aux graphiques changent avec les filtres, sans double comptage ni division par zéro.
+La contribution de finition de l'interface a été assistée par Codex à la demande
+d'Assia ; elle doit être relue et comprise par le binôme.
 
 ## Répartition
 
